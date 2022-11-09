@@ -31,7 +31,7 @@ const createActivity = async (req, res) => {
         await newCountry.addActivity(activity);
       }
     });
-    res.send(201);
+    res.sendStatus(201);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -39,9 +39,7 @@ const createActivity = async (req, res) => {
 
 const getActivities = async (req, res) => {
   try {
-    let activities = await Activity.findAll({
-      include: Country,
-    });
+    let activities = await Activity.findAll();
     res.status(200).json(activities);
   } catch (error) {
     res.status(404).json({ error: error.message });

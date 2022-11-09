@@ -80,7 +80,8 @@ const FormActivity = () => {
         return;
       }
     }
-    /* if (input.allCountries.includes(count.name)) {
+
+    if (input.allCountries.find((co) => co.name === counName)) {
       setError(true);
       setMensaje(`${counName} ya se encuentra seleccionado!!!`);
 
@@ -89,7 +90,7 @@ const FormActivity = () => {
         setError(false);
       }, 5000);
       return;
-    } */
+    }
     console.table(count); //[{}]
     setInput({
       ...input,
@@ -140,7 +141,6 @@ const FormActivity = () => {
       }, 5000);
     } else {
       dispatch(actions.createActivity(input));
-      dispatch(actions.AddActivity(input.name.toLowerCase()));
       setInput({
         countryName: "",
         allCountries: [],

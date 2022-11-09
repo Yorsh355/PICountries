@@ -7,22 +7,24 @@ import s from "../styles/Home.module.css";
 
 const Home = () => {
   const allCountries = useSelector((state) => state.countries);
-  const allActivities = useSelector((state) => state.activities);
+  const reseat = useSelector((state) => state.reseat);
   const dispatch = useDispatch();
   const changes = useSelector((state) => state.change);
-  console.log(allActivities);
 
   useEffect(() => {
-    dispatch(actions.getActivities());
-  }, []);
+    dispatch(actions.AddActivity());
+  }, [changes]);
 
   useEffect(() => {
-    if (allCountries.length === 0) {
+    if (allCountries.length === 0 && !reseat) {
       dispatch(actions.getAllCountries());
-      dispatch(actions.getActivities());
     }
   }, [changes]);
   console.log(allCountries);
+
+  if (allCountries.message) {
+    return <h1>{allCountries.message}</h1>;
+  }
 
   if (allCountries.length === 0) {
     return (

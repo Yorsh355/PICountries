@@ -5,6 +5,7 @@ const inicialState = {
   activities: [],
   detail: {},
   change: false,
+  reseat: false,
 };
 
 const allCountries = (state = inicialState, action) => {
@@ -95,35 +96,35 @@ const allCountries = (state = inicialState, action) => {
         countries: filterCont,
       };
     case actions.ADD_ACTIVITY:
-      const filterAct = state.countries.filter(
-        (co) => co.activities.length !== 0
-      );
-      const arrAct = filterAct.map((co) => co.activities.name);
-      console.table(arrAct);
       return {
         ...state,
-        activities: !state.activities.includes(action.payload)
-          ? [...state.activities, action.payload]
-          : [...state.activities],
+        activities: action.payload,
       };
-    case actions.FILTER_ACTYVITY:
-      console.log(action.payload);
-      let activ = state.countries.map((co) =>
-        co.activities.filter((ac) => ac.name)
-      ); /* .filter((co) =>
-        co.activities.name.includes(action.payload)
-      ); */
-      console.log(activ);
-      let act = activ.activities.filter((co) => co.name);
-      console.log(act);
+
+    case actions.FILTER_ACTIVITY:
+      let act = [];
+
+      for (let i = 0; i < state.countries.length; i++) {
+        for (let j = 0; j < state.countries[i].activities.length; j++) {
+          if (state.countries[i].activities[j].name === action.payload)
+            act = [...act, state.countries[i]];
+        }
+      }
+      console.table(act);
       return {
         ...state,
-        countries: act,
+        countries:
+          act.length !== 0 ? act : { message: "Actividad no encontrada" },
       };
     case actions.UPDATE:
       return {
         ...state,
         change: !state.change,
+      };
+    case actions.RESEAT:
+      return {
+        ...state,
+        reseat: action.payload,
       };
     default:
       return state;

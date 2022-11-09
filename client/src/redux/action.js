@@ -2,14 +2,14 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_COUNTRIES_DETAIL = "GET_COUNTRIES_DETAIL";
 export const CLEAN_COUNTRIES_DETAIL = "CLEAN_COUNTRIES_DETAIL";
-export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
 export const SEARSH_COUNTRY = "SEARSH_COUNTRY";
 export const ORDERAZ_COUNTRIES = "ORDER_COUNTRIES";
 export const ORDENAR_POBLACION = "ORDENAR_POBLACION";
 export const FILTER_CONTINENT = "FILTER_CONTINENT";
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
-export const FILTER_ACTYVITY = "FILTER_ACTYVITY";
+export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const UPDATE = "UPDATE";
+export const RESEAT = "RESEAT";
 
 export const getAllCountries = () => {
   return function (dispatch) {
@@ -90,14 +90,27 @@ export const ordenarPoblacion = (input) => {
 export const filterContinent = (input) => {
   return { type: FILTER_CONTINENT, payload: input };
 };
-export const AddActivity = (input) => {
-  return { type: ADD_ACTIVITY, payload: input };
+export const AddActivity = () => {
+  return function (dispatch) {
+    return fetch("http://localhost:3001/activities")
+      .then((response) => response.json())
+      .then((activities) => {
+        dispatch({ type: ADD_ACTIVITY, payload: activities });
+      })
+      .catch((err) => {
+        console.error({ err: err.message });
+      });
+  };
 };
 
 export const filterActivity = (input) => {
-  return { type: FILTER_ACTYVITY, payload: input };
+  return { type: FILTER_ACTIVITY, payload: input };
 };
 
 export const update = (prop) => {
   return { type: UPDATE };
+};
+
+export const reseat = (prop) => {
+  return { type: RESEAT, payload: prop };
 };

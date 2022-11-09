@@ -8,17 +8,19 @@ const FilterCountries = () => {
   const activity = useSelector((state) => state.activities);
 
   const [input, setInput] = useState("");
+  const [inputA, setInputA] = useState("");
 
   const dispatch = useDispatch();
 
   const handleChangeAct = (e) => {
     console.log(e.target.value);
-    setInput(e.target.value);
+    setInputA(e.target.value);
   };
 
   const handleSubmitAct = (e) => {
     e.preventDefault();
-    dispatch(actions.filterActivity(input));
+    dispatch(actions.filterActivity(inputA));
+    dispatch(actions.reseat(true));
     dispatch(actions.update());
   };
 
@@ -29,6 +31,7 @@ const FilterCountries = () => {
   const handleSubmitCont = (e) => {
     e.preventDefault();
     dispatch(actions.filterContinent(input));
+    dispatch(actions.reseat(true));
     dispatch(actions.update());
   };
   console.log(input);
@@ -41,7 +44,9 @@ const FilterCountries = () => {
         <select name="Actividades" onChange={handleChangeAct}>
           <option value=""> -- Select Actividad -- </option>
           {activity.map((op) => (
-            <option value={op}>{op}</option>
+            <option key={op.id} value={op.name}>
+              {op.name}
+            </option>
           ))}
         </select>
 
