@@ -1,0 +1,56 @@
+:root{
+    --primaryGreen: #B0E2E1;
+    --secundaryGreen: #5DC5C4;
+    --blue: #3D5071;
+    --black: #434343;
+    --primaryGrey: #79859D;
+    --secundaryGrey: #F7F7F7;
+}
+
+/* Estilos generales */
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px; /* 1rem=10px */
+}
+
+h1{
+    text-align: center;
+    font-size: 3.8rem;
+}
+
+.card_container{
+    place-content: center;
+    background-color: var(--primaryGrey);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.img_container{
+    min-height: auto;
+}
+.card_image{
+    min-height: 50%;
+    width:100%;
+    border-radius: 1rem;
+}
+/* .card_info{
+
+} */
+
+.card_name{
+    font-size: 3rem;
+    margin: 1rem 0;
+    text-align: center;
+    line-height: 1.2;
+}
+.card_continents{
+        font-size: 2.5rem;
+        margin: 1rem 0;
+        text-align: center;
+        line-height: 1.2;
+}

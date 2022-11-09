@@ -1,0 +1,59 @@
+:root{
+    --primaryGreen: #B0E2E1;
+    --secundaryGreen: #5DC5C4;
+    --blue: #3D5071;
+    --black: #434343;
+    --primaryGrey: #79859D;
+    --secundaryGrey: #F7F7F7;
+}
+
+/* Estilos generales */
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 1.6rem; /* 1rem=10px */
+    background-color: var(--secundaryGrey);
+    line-height: 1.5;
+}
+
+h1{
+    text-align: center;
+    font-size: 3.8rem;
+}
+p{
+    font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--black);
+}
+img{
+    max-width: 100%;
+}
+
+h1, h2, h3{
+    text-align: center;
+    color: var(--black);
+}
+h1{font-size: 4rem}
+h2{font-size: 3.2rem}
+h3{font-size: 2.4rem}
+
+.home_cards{
+    margin: 0 auto;
+    margin-top: 5rem;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+@media(min-width: 768px){
+    .home_cards{
+        place-content: center;
+        grid-template-columns: repeat(3, 1fr);
+        min-width: 120rem;
+    }
+}
