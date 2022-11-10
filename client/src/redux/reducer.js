@@ -110,7 +110,7 @@ const allCountries = (state = inicialState, action) => {
             act = [...act, state.countries[i]];
         }
       }
-      console.table(act);
+      //console.table(act);
       return {
         ...state,
         countries:

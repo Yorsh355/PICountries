@@ -13,7 +13,6 @@ const FilterCountries = () => {
   const dispatch = useDispatch();
 
   const handleChangeAct = (e) => {
-    console.log(e.target.value);
     setInputA(e.target.value);
   };
 
@@ -34,7 +33,7 @@ const FilterCountries = () => {
     dispatch(actions.reseat(true));
     dispatch(actions.update());
   };
-  console.log(input);
+
   return (
     <div className={s.container_filter}>
       <form>

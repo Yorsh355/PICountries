@@ -8,7 +8,6 @@ import s from "../styles/Home.module.css";
 
 const FormActivity = () => {
   const allCountries = useSelector((state) => state.countries);
-  //const { name } = useParams();
   const dispatch = useDispatch();
 
   let regedex = /[0-9]/;
@@ -26,16 +25,6 @@ const FormActivity = () => {
     season: "",
   });
 
-  /* let countname = allCountries.filter((co) => co.name === name);
-
-  useEffect(() => {
-    setInput({
-      ...input,
-      allCountries: [...input.allCountries, countname[0]],
-      countryName: "",
-    });
-  }, []); */
-  //console.log(input);
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -45,9 +34,6 @@ const FormActivity = () => {
       dispatch(actions.getAllCountries());
     }
   }, []);
-
-  console.log(allCountries);
-  //const renderName = (name) => {};
 
   const addCountry = () => {
     let counName =
@@ -67,8 +53,6 @@ const FormActivity = () => {
       //busco el pais que digitan en el input, para validar si existe
       count = allCountries.filter((co) => co.name === counName);
       //si no existe envio un error
-      console.table(count);
-      console.table(input.allCountries);
       if (count.length === 0) {
         setError(true);
         setMensaje(`${counName} no es un nombre de pais valido!!!`);
@@ -91,7 +75,6 @@ const FormActivity = () => {
       }, 5000);
       return;
     }
-    console.table(count); //[{}]
     setInput({
       ...input,
       allCountries: [...input.allCountries, count[0]],
@@ -107,7 +90,6 @@ const FormActivity = () => {
       allCountries: count,
       countryName: "",
     });
-    console.log(input.allCountries);
   };
 
   const handleSubmit = (e) => {
@@ -156,7 +138,6 @@ const FormActivity = () => {
         setMensaje("");
       }, 3000);
     }
-    console.log(input);
   };
 
   if (allCountries.length === 0) {
