@@ -29,7 +29,8 @@ h1{
     min-width: 120rem;
     margin: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content:space-around;
+    align-items: center;
 }
 .nav{
     color: var(--secundaryGrey);
@@ -37,4 +38,27 @@ h1{
 }
 .img{
     max-width: 10rem;
+}
+
+.img:hover{
+    opacity: .6;
+    transition: all 400ms ease;
+    cursor: pointer;
+}
+
+.btn{
+    padding: .5rem;
+    border: none;
+    margin-right: .5rem;
+    border-radius: .5rem;
+    background-color: var(--primaryGreen);
+    color: var(--primaryGrey);
+    transition: all 400ms ease;
+}
+
+.btn:hover{
+    background-color: var(--secundaryGreen);
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
+    transition: all 0.2s ease;
 }

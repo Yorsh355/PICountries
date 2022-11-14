@@ -1,0 +1,64 @@
+:root{
+    --primaryGreen: #B0E2E1;
+    --secundaryGreen: #5DC5C4;
+    --blue: #3D5071;
+    --black: #434343;
+    --primaryGrey: #79859D;
+    --secundaryGrey: #F7F7F7;
+}
+
+/* Estilos generales */
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px; /* 1rem=10px */
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    min-height: 100vh;
+    background-color: var(--black);
+}
+
+.image_main{
+    background-image: url(../images/main.jpg);
+    background-size: cover;
+    background-position: center, center;
+    height: auto;
+}
+
+.main{
+    width: 95%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--primaryGreen);
+    padding: 1.5rem 4rem;
+    color: var(--black);
+    font-size: 2rem;
+    font-weight: 400;
+    display: inline-block;
+    font-weight: 700;
+    border: none;
+    display: block;
+    width: 30%;
+    cursor: pointer;
+    border-radius: 1rem;
+    }
+.btn:hover{
+    box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
+    transition: all 0.2s ease;
+}

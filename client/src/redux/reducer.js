@@ -5,7 +5,7 @@ const inicialState = {
   activities: [],
   detail: {},
   change: false,
-  reseat: false,
+  //reseat: false,
 };
 
 const allCountries = (state = inicialState, action) => {
@@ -75,6 +75,9 @@ const allCountries = (state = inicialState, action) => {
       };
 
       let orderPop = order(state.countries, ["population"], ["DESCENDENTE"]);
+      /* let orderPop = state.countries.sort(
+        (a, b) => b.population - a.population
+      ); */
 
       console.table(orderPop);
       return {
@@ -114,18 +117,18 @@ const allCountries = (state = inicialState, action) => {
       return {
         ...state,
         countries:
-          act.length !== 0 ? act : { message: "Actividad no encontrada" },
+          act.length !== 0 ? act : [{ message: "Actividad no disponible" }],
       };
     case actions.UPDATE:
       return {
         ...state,
         change: !state.change,
       };
-    case actions.RESEAT:
+    /* case actions.RESEAT:
       return {
         ...state,
         reseat: action.payload,
-      };
+      }; */
     default:
       return state;
   }

@@ -15,14 +15,19 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(actions.searchCountry(input));
+    setInput("");
   };
   return (
     <div className={s.container_search}>
       <form onSubmit={handleSubmit}>
-        <button type="submit">SearchBar</button>
+        <button className={s.btn} type="submit">
+          Search
+        </button>
         <input
+          className={s.input}
           type="text"
-          name="searsh"
+          name="search"
+          placeholder="Search"
           value={input}
           onChange={handleChange}
         />

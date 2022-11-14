@@ -66,6 +66,14 @@ export const createActivity = (res) => {
   };
 };
 
+/* export const createActivity = async (res) => {
+  await fetch("http://localhost:3001/activity", {
+    method: "POST",
+    body: JSON.stringify(res),
+    headers: { "content-type": "application/json" },
+  }).catch((err) => console.error({ err: err.message }));
+};
+ */
 export const searchCountry = (name) => {
   return function (dispatch) {
     return fetch(`http://localhost:3001/countries?name=${name}`)

@@ -1,0 +1,41 @@
+:root{
+    --primaryGreen: #B0E2E1;
+    --secundaryGreen: #5DC5C4;
+    --blue: #3D5071;
+    --black: #434343;
+    --primaryGrey: #79859D;
+    --secundaryGrey: #F7F7F7;
+}
+
+/* Estilos generales */
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    display:flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px; /* 1rem=10px */
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+    font-size: 3.8rem;
+}
+
+.footer{
+    background-color: var(--blue);
+    padding: 1rem 0; 
+    margin-top: auto;
+}
+
+.text{
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--secundaryGrey);
+}

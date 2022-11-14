@@ -1,9 +1,10 @@
 import React from "react";
+import s from "../styles/Error.module.css";
 
 const Errores = ({ mensaje }) => {
   return (
-    <div>
-      <p>{mensaje}</p>
+    <div className={s.error}>
+      <p className={s.message}>{mensaje}</p>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import s from "../styles/Paginado.module.css";
 
 const Paginado = ({ allCountries, paginado }) => {
   let pageNumbers = [];
@@ -7,12 +8,15 @@ const Paginado = ({ allCountries, paginado }) => {
     pageNumbers = [...pageNumbers, i];
   }
   return (
-    <nav>
-      <ul className="paginado">
-        {pageNumbers &&
+    <nav className={s.nav}>
+      <h4 className={s.title}>Paginas</h4>
+      <ul className={s.paginado}>
+        {pageNumbers.length !== 0 &&
           pageNumbers.map((n) => (
-            <li className="n" key={n}>
-              <button onClick={() => paginado(n)}>{n}</button>
+            <li className={s.paginado__li} key={n}>
+              <button className={s.paginado__btn} onClick={() => paginado(n)}>
+                {n}
+              </button>
             </li>
           ))}
       </ul>

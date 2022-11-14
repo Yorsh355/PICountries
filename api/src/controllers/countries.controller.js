@@ -45,7 +45,6 @@ const getAllCountries = async (req, res) => {
       include: Activity,
     });
 
-    //res.status(200).json(countries);
     res.status(200).json(countries);
   } catch (error) {
     console.log(error.message);

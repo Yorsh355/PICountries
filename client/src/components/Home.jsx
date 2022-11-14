@@ -1,6 +1,6 @@
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../redux/action";
 import s from "../styles/Home.module.css";
@@ -9,14 +9,13 @@ import Paginado from "./Paginado";
 
 const Home = () => {
   const allCountries = useSelector((state) => state.countries);
-  const reseat = useSelector((state) => state.reseat);
+  //const reseat = useSelector((state) => state.reseat);
   const dispatch = useDispatch();
   const changes = useSelector((state) => state.change);
   //pagina actual
   const [currentPage, setCurrentPage] = useState(1);
   //cantidad de paises por pagina
   const [countriesPerPage, setCountriesPerPage] = useState(10);
-  let indexOfLastCountry;
   useEffect(() => {
     if (currentPage === 1) {
       setCountriesPerPage(9);
@@ -26,8 +25,8 @@ const Home = () => {
   }, [currentPage]);
 
   console.log(currentPage);
-  //el indice del último país que tengo en la página, en principo será 8
-  indexOfLastCountry =
+
+  let indexOfLastCountry =
     currentPage === 1
       ? parseInt(currentPage * countriesPerPage)
       : parseInt(currentPage * countriesPerPage) - 1;
@@ -36,31 +35,23 @@ const Home = () => {
   //indice del primer país
   const indexOfFirstCountry =
     currentPage === 1 ? 0 : indexOfLastCountry - countriesPerPage;
-  //paises que se encuentran en la pagina actual
-  const currentCountries = allCountries.slice(
-    indexOfFirstCountry,
-    indexOfLastCountry
-  );
 
-  //Ayuda a realizar el renderizado
+  //Número de la pagina a renderizar
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
     dispatch(actions.AddActivity());
+    setCurrentPage(1);
   }, [changes]);
 
   useEffect(() => {
-    if (allCountries.length === 0 && !reseat) {
+    if (allCountries.length === 0) {
       dispatch(actions.getAllCountries());
     }
   }, [changes]);
   console.log(allCountries);
-
-  if (allCountries.message) {
-    return <h1>{allCountries.message}</h1>;
-  }
 
   if (allCountries.length === 0) {
     return (
@@ -70,8 +61,18 @@ const Home = () => {
     );
   }
 
+  if (allCountries[0].message) {
+    return <h1>{allCountries[0].message}</h1>;
+  }
+
+  //paises que se encuentran en la pagina actual
+  const currentCountries = allCountries.slice(
+    indexOfFirstCountry,
+    indexOfLastCountry
+  );
+
   return (
-    <div className={s.home_cards}>
+    <div className={s.container}>
       <div>
         <Paginado
           countriesPerPage={countriesPerPage}
@@ -79,16 +80,18 @@ const Home = () => {
           paginado={paginado}
         />
       </div>
-      {currentCountries &&
-        currentCountries.map((country) => (
-          <Card
-            key={country.id}
-            id={country.id}
-            flags={country.flags}
-            name={country.name}
-            continents={country.continents}
-          />
-        ))}
+      <div className={s.cards}>
+        {currentCountries &&
+          currentCountries.map((country) => (
+            <Card
+              key={country.id}
+              id={country.id}
+              flags={country.flags}
+              name={country.name}
+              continents={country.continents}
+            />
+          ))}
+      </div>
       <div>
         <Paginado
           countriesPerPage={countriesPerPage}

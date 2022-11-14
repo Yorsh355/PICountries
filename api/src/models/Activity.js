@@ -28,7 +28,6 @@ module.exports = (sequelize) => {
         },
       },
       duration: {
-        //consultar formato de fecha requerido
         type: DataTypes.INTEGER,
       },
       season: {

@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import FilterCountries from "./FilterCountries";
 import OrderCountries from "./OrderCountries";
 import s from "../styles/Nav.module.css";
-import logo from "../images/logoCountry.jpeg";
+import logo from "../images/viaje-y-turismo.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllCountries } from "../redux/action";
@@ -22,12 +22,12 @@ const Nav = () => {
       </Link>
       <SearchBar />
       <OrderCountries />
-      <FilterCountries />
       <div>
-        <Link to={"/Activity"}>
-          <button>Create Activity</button>
-        </Link>
+        <FilterCountries />
       </div>
+      <Link to={"/Activity"}>
+        <button className={s.btn}>Create Activity</button>
+      </Link>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import s from "../styles/FilterCountries.module.css";
+import s from "../styles/OrderCountries.module.css";
 import * as actions from "../redux/action";
 
 const OrderCountries = () => {
@@ -21,12 +21,12 @@ const OrderCountries = () => {
   };
 
   return (
-    <div className={s.container_filter}>
+    <div className={s.container}>
       <form>
-        <button type="submit" onClick={handleSubmit}>
+        <button className={s.btn_order} type="submit" onClick={handleSubmit}>
           Order
         </button>
-        <select name="filter" onChange={handleChange}>
+        <select className={s.order} name="filter" onChange={handleChange}>
           <option value=""> -- Select Order -- </option>
           <option value={"A-Z"}>A-Z</option>
           <option value={"Z-A"}>Z-A</option>

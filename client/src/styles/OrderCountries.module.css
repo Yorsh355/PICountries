@@ -19,18 +19,13 @@ body{
     font-size: 16px; /* 1rem=10px */
 }
 
-h1{
-    text-align: center;
-    font-size: 3.8rem;
-}
-
-.container_search{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.btn{
+.btn_order{
     padding: .5rem;
     border: none;
     margin-right: .5rem;
@@ -40,14 +35,14 @@ h1{
     transition: all 400ms ease;
 }
 
-.btn:hover{
+.btn_order:hover{
     background-color: var(--secundaryGreen);
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
     transition: all 0.2s ease;
 }
 
-.input{
+.order{
     border: var(--secundaryGreen);
     border-width: .1rem;
     border-style: solid;
@@ -57,6 +52,6 @@ h1{
     color: var(--secundaryGreen)
 
 }
-.input:focus{
+.order:focus{
     outline: var(--secundaryGreen);
 }

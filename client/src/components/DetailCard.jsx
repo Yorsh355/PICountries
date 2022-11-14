@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/action";
 import { useParams } from "react-router-dom";
+import s from "../styles/Detail.module.css";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -13,32 +14,57 @@ const DetailCard = () => {
     dispatch(actions.cleanCountriesDetail());
     dispatch(actions.getCountriesDetail(id));
   }, []);
+
   return (
     <div>
       <h1>Detail</h1>
       {country.hasOwnProperty("flags") ? (
-        <div key={country.id}>
-          <img src={country.flags} alt={country.name} />
-          <h3>{country.name}</h3>
-          <p>{country.continents}</p>
-          <p>{country.subregion}</p>
-          <p>{country.capital}</p>
-          <p>{country.area}</p>
-          <p>{country.population}</p>
-          <div className="detail_activity">
-            <h2>Activitys</h2>
+        <div className={s.container} key={country.id}>
+          <div className={s.detail}>
+            <img src={country.flags} alt={country.name} />
+            <h3 className={s.span}>{country.name}</h3>
+            <p className={s.p}>
+              <span className={s.span}>Continent:</span> {country.continents}
+            </p>
+            <p className={s.p}>
+              <span className={s.span}>Id:</span> {country.id}
+            </p>
+            <p className={s.p}>
+              <span className={s.span}>Subregion:</span> {country.subregion}
+            </p>
+            <p className={s.p}>
+              <span className={s.span}>capital:</span> {country.capital}
+            </p>
+            <p className={s.p}>
+              <span className={s.span}>Area:</span> {country.area} km2
+            </p>
+            <p className={s.p}>
+              <span className={s.span}>Population:</span> {country.population}
+            </p>
+          </div>
+          <div className={s.activity}>
+            <h2 className={s.h2}>Activitys</h2>
             {country.activities.length !== 0 ? (
               country.activities.map((act) => (
-                <div key={act.id} className="detail_info">
-                  <h3>{act.name}</h3>
-                  <p>Difficulty: {act.difficulty}</p>
-                  <p>Season: {act.season}</p>
-                  <p>Duration: {act.duration} Hours</p>
+                <div key={act.id} className={s.info}>
+                  <h3 className={s.h3}>{act.name}</h3>
+                  <p className={s.pa}>
+                    <span className={s.spana}>Difficulty: </span>
+                    <span className={s.spana}>{act.difficulty}</span>
+                  </p>
+                  <p className={s.pa}>
+                    <span className={s.spana}>Season: </span>
+                    {act.season}
+                  </p>
+                  <p className={s.pa}>
+                    <span className={s.spana}>Duration: </span>
+                    {act.duration} Hours
+                  </p>
                   <br />
                 </div>
               ))
             ) : (
-              <h1>Sin actividades disponibles!!!</h1>
+              <h1 className={s.h1}>Sin actividades disponibles!!!</h1>
             )}
           </div>
         </div>

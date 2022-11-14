@@ -6,6 +6,8 @@ import Nav from "./components/Nav";
 import Home from "./components/Home";
 import DetailCard from "./components/DetailCard";
 import FormActivity from "./components/FormActivity";
+import Footer from "./components/Footer";
+import s from "../src/styles/Foorer.module.css";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <Route path={"/home"}>
         <Nav />
         <Home />
+        <Footer className={s.footer} />
       </Route>
 
       <Route path={"/detail/:id"}>
