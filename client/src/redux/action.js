@@ -10,6 +10,8 @@ export const ADD_ACTIVITY = "ADD_ACTIVITY";
 export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const UPDATE = "UPDATE";
 export const RESEAT = "RESEAT";
+export const FIRST_PAGE = "FIRST_PAGE";
+export const RESEAT_COUNTRIES = "RESEAT_COUNTRIES";
 
 export const getAllCountries = () => {
   return function (dispatch) {
@@ -17,19 +19,6 @@ export const getAllCountries = () => {
       .then((response) => response.json())
       .then((countries) =>
         dispatch({ type: GET_ALL_COUNTRIES, payload: countries })
-      )
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-};
-
-export const getActivities = () => {
-  return function (dispatch) {
-    return fetch("http://localhost:3001/activities")
-      .then((response) => response.json())
-      .then((activities) =>
-        dispatch({ type: GET_ACTIVITIES, payload: activities })
       )
       .catch((err) => {
         console.error(err);
@@ -111,6 +100,19 @@ export const AddActivity = () => {
   };
 };
 
+/* export const getActivities = () => {
+  return function (dispatch) {
+    return fetch("http://localhost:3001/activities")
+      .then((response) => response.json())
+      .then((activities) =>
+        dispatch({ type: GET_ACTIVITIES, payload: activities })
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+}; */
+
 export const filterActivity = (input) => {
   return { type: FILTER_ACTIVITY, payload: input };
 };
@@ -121,4 +123,12 @@ export const update = (prop) => {
 
 export const reseat = (prop) => {
   return { type: RESEAT, payload: prop };
+};
+
+export const firstPage = () => {
+  return { type: FIRST_PAGE };
+};
+
+export const reseatCountries = () => {
+  return { type: RESEAT_COUNTRIES };
 };

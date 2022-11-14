@@ -1,6 +1,5 @@
 import { React, Fragment } from "react";
 import { useState, useEffect } from "react";
-//import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../redux/action";
 import Errores from "./Errores";
@@ -8,7 +7,7 @@ import s from "../styles/Home.module.css";
 import f from "../styles/Form.module.css";
 
 const FormActivity = () => {
-  const allCountries = useSelector((state) => state.countries);
+  const allCountries = useSelector((state) => state.countriesCopi);
   const dispatch = useDispatch();
 
   let regedex = /[0-9]/;

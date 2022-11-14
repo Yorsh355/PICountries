@@ -1,15 +1,16 @@
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../redux/action";
 import s from "../styles/Home.module.css";
 import { useState } from "react";
 import Paginado from "./Paginado";
+import spinner from "../images/Spinner.gif";
 
 const Home = () => {
   const allCountries = useSelector((state) => state.countries);
-  //const reseat = useSelector((state) => state.reseat);
+  const firstPage = useSelector((state) => state.firstPage);
   const dispatch = useDispatch();
   const changes = useSelector((state) => state.change);
   //pagina actual
@@ -40,10 +41,12 @@ const Home = () => {
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [firstPage]);
 
   useEffect(() => {
     dispatch(actions.AddActivity());
-    setCurrentPage(1);
   }, [changes]);
 
   useEffect(() => {
@@ -56,7 +59,7 @@ const Home = () => {
   if (allCountries.length === 0) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <img src={spinner} alt="spinner" />
       </div>
     );
   }
@@ -74,11 +77,7 @@ const Home = () => {
   return (
     <div className={s.container}>
       <div>
-        <Paginado
-          countriesPerPage={countriesPerPage}
-          allCountries={allCountries.length}
-          paginado={paginado}
-        />
+        <Paginado allCountries={allCountries.length} paginado={paginado} />
       </div>
       <div className={s.cards}>
         {currentCountries &&
@@ -93,11 +92,7 @@ const Home = () => {
           ))}
       </div>
       <div>
-        <Paginado
-          countriesPerPage={countriesPerPage}
-          allCountries={allCountries.length}
-          paginado={paginado}
-        />
+        <Paginado allCountries={allCountries.length} paginado={paginado} />
       </div>
     </div>
   );

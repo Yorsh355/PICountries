@@ -18,10 +18,9 @@ const FilterCountries = () => {
 
   const handleSubmitAct = (e) => {
     e.preventDefault();
-    dispatch(actions.getAllCountries);
     dispatch(actions.filterActivity(inputA));
-    /* dispatch(actions.reseat(true)); */
     dispatch(actions.update());
+    dispatch(actions.firstPage());
   };
 
   const handleChangeCont = (e) => {
@@ -30,10 +29,11 @@ const FilterCountries = () => {
 
   const handleSubmitCont = (e) => {
     e.preventDefault();
-    //dispatch(actions.getAllCountries);
+    dispatch(actions.getAllCountries);
     dispatch(actions.filterContinent(input));
     /* dispatch(actions.reseat(true)); */
     dispatch(actions.update());
+    dispatch(actions.firstPage());
   };
 
   return (

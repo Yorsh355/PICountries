@@ -1,5 +1,5 @@
 import React from "react";
-import store from "../redux/store";
+//import store from "../redux/store";
 import { Link } from "react-router-dom";
 import s from "../styles/Main.module.css";
 import img from "../images/main.jpg";

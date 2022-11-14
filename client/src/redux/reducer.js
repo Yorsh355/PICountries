@@ -1,11 +1,14 @@
+//import FilterCountries from "../components/FilterCountries";
 import * as actions from "../redux/action";
 
 const inicialState = {
   countries: [],
   activities: [],
+  countriesCopi: [],
+  continents: [],
   detail: {},
   change: false,
-  //reseat: false,
+  firstPage: false,
 };
 
 const allCountries = (state = inicialState, action) => {
@@ -14,13 +17,15 @@ const allCountries = (state = inicialState, action) => {
       return {
         ...state,
         countries: action.payload,
+        countriesCopi: action.payload,
       };
-    case actions.GET_ACTIVITIES:
+    /* case actions.GET_ACTIVITIES:
       const names = action.payload.map((ac) => ac.name);
       return {
         ...state,
         activities: names,
       };
+ */
     case actions.GET_COUNTRIES_DETAIL:
       return {
         ...state,
@@ -75,11 +80,8 @@ const allCountries = (state = inicialState, action) => {
       };
 
       let orderPop = order(state.countries, ["population"], ["DESCENDENTE"]);
-      /* let orderPop = state.countries.sort(
-        (a, b) => b.population - a.population
-      ); */
+      orderPop = state.countries.sort((a, b) => b.population - a.population);
 
-      console.table(orderPop);
       return {
         ...state,
         countries:
@@ -90,13 +92,14 @@ const allCountries = (state = inicialState, action) => {
             : state.countries,
       };
     case actions.FILTER_CONTINENT:
-      const filterCont = state.countries.filter((co) =>
+      const filterCont = [...state.countriesCopi].filter((co) =>
         co.continents.includes(action.payload)
       );
       //console.table(filterCont);
       return {
         ...state,
         countries: filterCont,
+        continents: filterCont,
       };
     case actions.ADD_ACTIVITY:
       return {
@@ -106,11 +109,12 @@ const allCountries = (state = inicialState, action) => {
 
     case actions.FILTER_ACTIVITY:
       let act = [];
-
-      for (let i = 0; i < state.countries.length; i++) {
-        for (let j = 0; j < state.countries[i].activities.length; j++) {
-          if (state.countries[i].activities[j].name === action.payload)
-            act = [...act, state.countries[i]];
+      let country =
+        state.countries.length === 250 ? state.countries : state.continents;
+      for (let i = 0; i < country.length; i++) {
+        for (let j = 0; j < country[i].activities.length; j++) {
+          if (country[i].activities[j].name === action.payload)
+            act = [...act, country[i]];
         }
       }
       //console.table(act);
@@ -124,11 +128,17 @@ const allCountries = (state = inicialState, action) => {
         ...state,
         change: !state.change,
       };
-    /* case actions.RESEAT:
+
+    case actions.FIRST_PAGE:
       return {
         ...state,
-        reseat: action.payload,
-      }; */
+        firstPage: !state.firstPage,
+      };
+    case actions.RESEAT_COUNTRIES:
+      return {
+        ...state,
+        countries: [],
+      };
     default:
       return state;
   }

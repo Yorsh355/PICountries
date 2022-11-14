@@ -15,9 +15,15 @@ const OrderCountries = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(actions.orderAZCountries(input));
-    dispatch(actions.ordenarPoblacion(input));
-    dispatch(actions.update());
+    if (input === "A-Z" || input === "Z-A") {
+      dispatch(actions.orderAZCountries(input));
+      dispatch(actions.update());
+      dispatch(actions.firstPage());
+    } else {
+      dispatch(actions.ordenarPoblacion(input));
+      dispatch(actions.update());
+      dispatch(actions.firstPage());
+    }
   };
 
   return (

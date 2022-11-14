@@ -15,6 +15,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(actions.searchCountry(input));
+    dispatch(actions.firstPage());
     setInput("");
   };
   return (
