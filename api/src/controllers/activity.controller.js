@@ -1,3 +1,4 @@
+const { and } = require("sequelize");
 const { Activity, Country } = require("../db");
 
 const createActivity = async (req, res) => {
@@ -46,7 +47,29 @@ const getActivities = async (req, res) => {
   }
 };
 
+const deleteActivity = async (req, res) => {
+  try {
+    //el id del pais
+    const { id } = req.params;
+    //id actividad
+    const { id: idA } = req.body;
+    //let a = parseInt(actId);
+    //tengo el pais con las actividades
+    let country = await Country.findOne({
+      where: { id: id },
+      include: Activity,
+    });
+
+    let borrar = await country.removeActivity(idA);
+
+    res.status(201).json(borrar);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createActivity,
   getActivities,
+  deleteActivity,
 };

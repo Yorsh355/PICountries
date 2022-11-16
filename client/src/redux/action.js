@@ -100,19 +100,6 @@ export const AddActivity = () => {
   };
 };
 
-/* export const getActivities = () => {
-  return function (dispatch) {
-    return fetch("http://localhost:3001/activities")
-      .then((response) => response.json())
-      .then((activities) =>
-        dispatch({ type: GET_ACTIVITIES, payload: activities })
-      )
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-}; */
-
 export const filterActivity = (input) => {
   return { type: FILTER_ACTIVITY, payload: input };
 };
@@ -132,3 +119,36 @@ export const firstPage = () => {
 export const reseatCountries = () => {
   return { type: RESEAT_COUNTRIES };
 };
+
+export const deleteActivity = (id, act) => {
+  console.log(id, act);
+  return function () {
+    return fetch(`http://localhost:3001/delete/${id}`, {
+      method: "DELETE",
+      body: JSON.stringify(act),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("No se pudo eliminar");
+        }
+        console.log("Eliminando");
+      })
+      .catch((err) => {
+        console.error({ err: err.message });
+      });
+  };
+};
+
+/* export const getActivities = () => {
+  return function (dispatch) {
+    return fetch("http://localhost:3001/activities")
+      .then((response) => response.json())
+      .then((activities) =>
+        dispatch({ type: GET_ACTIVITIES, payload: activities })
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+}; */

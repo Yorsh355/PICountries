@@ -15,6 +15,11 @@ const DetailCard = () => {
     dispatch(actions.getCountriesDetail(id));
   }, []);
 
+  const deleteCard = (act) => {
+    console.log(act);
+    dispatch(actions.deleteActivity(id, act));
+  };
+
   return (
     <div>
       <h1>Detail</h1>
@@ -47,6 +52,11 @@ const DetailCard = () => {
             {country.activities.length !== 0 ? (
               country.activities.map((act) => (
                 <div key={act.id} className={s.info}>
+                  <div className={s.delete}>
+                    <button onClick={() => deleteCard(act)} className={s.btn}>
+                      X
+                    </button>
+                  </div>
                   <h3 className={s.h3}>{act.name}</h3>
                   <p className={s.pa}>
                     <span className={s.spana}>Difficulty: </span>

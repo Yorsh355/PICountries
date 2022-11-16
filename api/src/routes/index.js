@@ -6,6 +6,7 @@ const {
 const {
   createActivity,
   getActivities,
+  deleteActivity,
 } = require("../controllers/activity.controller");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -18,5 +19,6 @@ router.get("/countries", getAllCountries);
 router.get("/countries/:id", getCountryId);
 router.post("/activity", createActivity);
 router.get("/activities", getActivities);
+router.delete("/delete/:id", deleteActivity);
 
 module.exports = router;

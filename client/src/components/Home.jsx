@@ -31,6 +31,7 @@ const Home = () => {
     currentPage === 1
       ? parseInt(currentPage * countriesPerPage)
       : parseInt(currentPage * countriesPerPage) - 1;
+
   console.log(indexOfLastCountry);
 
   //indice del primer país
@@ -54,6 +55,7 @@ const Home = () => {
       dispatch(actions.getAllCountries());
     }
   }, [changes]);
+
   console.log(allCountries);
 
   if (allCountries.length === 0) {
